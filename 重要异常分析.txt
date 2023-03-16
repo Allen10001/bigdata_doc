@@ -1,0 +1,16 @@
+1. spark 开启 userClassPathFirst 后包类加载异常
+
+22/06/29 15:39:53 [Driver] [ERROR] 
+org.apache.spark.deploy.yarn.ApplicationMaster:91: 
+User class threw exception: org.apache.spark.sql.AnalysisException: 
+java.lang.LinkageError: 
+loader constraint violation: 
+when resolving method "org.slf4j.LoggerFactory.getLogger(Ljava/lang/String;)Lorg/slf4j/Logger;" 
+
+
+the class loader (instance of org/apache/spark/sql/hive/client/IsolatedClientLoader$$anon$1) of the current class, org/apache/commons/logging/impl/SLF4JLogFactory, 
+and the class loader (instance of org/apache/spark/util/ChildFirstURLClassLoader) for the method's defining class, org/slf4j/LoggerFactory, have different Class objects for the type org/slf4j/Logger used in the signature;
+
+
+org.apache.spark.sql.AnalysisException: java.lang.LinkageError: loader constraint violation: when resolving method "org.slf4j.LoggerFactory.getLogger(Ljava/lang/String;)Lorg/slf4j/Logger;" the class loader (instance of org/apache/spark/sql/hive/client/IsolatedClientLoader$$anon$1) of the current class, org/apache/commons/logging/impl/SLF4JLogFactory, and the class loader (instance of org/apache/spark/util/ChildFirstURLClassLoader) for the method's defining class, org/slf4j/LoggerFactory, have different Class objects for the type org/slf4j/Logger used in the signature;
+
